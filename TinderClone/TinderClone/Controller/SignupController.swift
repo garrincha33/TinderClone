@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import  FirebaseAuth
+import FirebaseDatabase
 
 class SignupController: UIViewController {
     
@@ -51,6 +53,7 @@ class SignupController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(signUpUser), for: .touchUpInside)
         return button
     }()
     override func viewDidLoad() {
@@ -59,6 +62,28 @@ class SignupController: UIViewController {
         setupNavigationBar()
         setupGradientlayer()
         setupUI()
+    }
+    @objc private func signUpUser() {
+        Auth.auth().createUser(withEmail: "test2email@gmail.com", password: "123456") { (authDataResult, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            if let authData = authDataResult {
+                print(authData.user.email ?? "")
+                let dict: Dictionary<String, Any> = [
+                    "uid": authData.user.email ?? "",
+                    "email": authData.user.email ?? "",
+                    "profileImageUrl": "",
+                    "status": "Welcome To TinderClone"
+                ]
+                Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict) { (error, ref) in
+                    if error == nil {
+                        print("finished")
+                    }
+                }
+            }
+        }
     }
     @objc private func cancelAction() {
         dismiss(animated: true, completion: nil)
