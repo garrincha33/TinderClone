@@ -8,9 +8,7 @@
 import UIKit
 
 class MainController: UIViewController {
-    
     //MARK:- lables and buttons
-    //step 1 create lables for setup
     let titleLable: UILabel = {
         let lable = UILabel()
         lable.text = "Create New Account"
@@ -60,13 +58,20 @@ class MainController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(alreadyHaveAccount), for: .touchUpInside)
         return button
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = true
         setupGradientlayer()
         setupUI()
+    }
+    @objc private func alreadyHaveAccount() {
+        let signUpController = SignupController()
+        let navController = UINavigationController(rootViewController: signUpController)
+        present(navController, animated: true, completion: nil)
     }
     private func setupUI() {
         let stackView = VerticalStackView(arrangedSubviews: [titleLable, signInFaceBookButton, signInGoogleButton, orLable, signInNewAccountButton])
@@ -75,7 +80,6 @@ class MainController: UIViewController {
         stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 32, bottom: 0, right: 32))
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-    
     private func setupGradientlayer() {
         let gradientLayer = CAGradientLayer()
         let topColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)

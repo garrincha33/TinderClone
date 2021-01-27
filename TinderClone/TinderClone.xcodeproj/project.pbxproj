@@ -17,6 +17,7 @@
 		1B8F264C25C0C7D100FF0C2E /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F264925C0C7D100FF0C2E /* VerticalStackView.swift */; };
 		1B8F264F25C0C80800FF0C2E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F264E25C0C80800FF0C2E /* Errors.swift */; };
 		1B8F265525C0D30800FF0C2E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F265425C0D30800FF0C2E /* CustomTextField.swift */; };
+		1B8F265E25C16E5C00FF0C2E /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F265D25C16E5C00FF0C2E /* SignupController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1B8F264925C0C7D100FF0C2E /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		1B8F264E25C0C80800FF0C2E /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		1B8F265425C0D30800FF0C2E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		1B8F265D25C16E5C00FF0C2E /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		1B8F262425C0C32400FF0C2E /* TinderClone */ = {
 			isa = PBXGroup;
 			children = (
+				1B8F265725C16CA000FF0C2E /* Extensions */,
 				1B8F264625C0C7A300FF0C2E /* Location */,
 				1B8F264525C0C79300FF0C2E /* Helpers */,
 				1B8F264425C0C78D00FF0C2E /* Enums */,
@@ -98,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				1B8F263E25C0C67E00FF0C2E /* MainController.swift */,
+				1B8F265D25C16E5C00FF0C2E /* SignupController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -125,6 +129,13 @@
 			children = (
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		1B8F265725C16CA000FF0C2E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +213,7 @@
 				1B8F264F25C0C80800FF0C2E /* Errors.swift in Sources */,
 				1B8F265525C0D30800FF0C2E /* CustomTextField.swift in Sources */,
 				1B8F262825C0C32400FF0C2E /* SceneDelegate.swift in Sources */,
+				1B8F265E25C16E5C00FF0C2E /* SignupController.swift in Sources */,
 				1B8F264A25C0C7D100FF0C2E /* UIView+Layout.swift in Sources */,
 				1B8F264C25C0C7D100FF0C2E /* VerticalStackView.swift in Sources */,
 			);
