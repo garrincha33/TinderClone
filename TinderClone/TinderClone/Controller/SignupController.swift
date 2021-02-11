@@ -6,10 +6,13 @@
 //
 
 import UIKit
-import  FirebaseAuth
+import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
+import ProgressHUD
 
 class SignupController: UIViewController {
+    var imageForFirebase: UIImage? = nil
     
     //MARK:- Lables and buttons
     let selectPhotoButton: UIButton = {
@@ -20,39 +23,42 @@ class SignupController: UIViewController {
         button.backgroundColor = .white
         button.heightAnchor.constraint(equalToConstant: 300).isActive = true
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(handleAddImage), for: .touchUpInside)
+        button.clipsToBounds = true
         return button
     }()
     let fullNameTextField: CustomTextField = {
         let textField = CustomTextField(padding: 16, height: 40)
         textField.placeholder = "Enter Full Name"
         textField.backgroundColor = .white
+        textField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return textField
     }()
-    
     let emailTextField: CustomTextField = {
         let textField = CustomTextField(padding: 16, height: 40)
         textField.placeholder = "Enter Email"
         textField.backgroundColor = .white
         textField.keyboardType = .emailAddress
+        textField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return textField
     }()
-    
     let passwordTextField: CustomTextField = {
         let textField = CustomTextField(padding: 16, height: 40)
         textField.placeholder = "Enter Password"
         textField.backgroundColor = .white
         textField.isSecureTextEntry = true
+        textField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return textField
     }()
-    
     let registrationButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        button.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        button.backgroundColor = .lightGray
+        button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        button.layer.cornerRadius = 16
+        button.layer.cornerRadius = 32
         button.addTarget(self, action: #selector(signUpUser), for: .touchUpInside)
         return button
     }()
@@ -63,27 +69,55 @@ class SignupController: UIViewController {
         setupGradientlayer()
         setupUI()
     }
-    @objc private func signUpUser() {
-        Auth.auth().createUser(withEmail: "test2email@gmail.com", password: "123456") { (authDataResult, error) in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-                return
-            }
-            if let authData = authDataResult {
-                print(authData.user.email ?? "")
-                let dict: Dictionary<String, Any> = [
-                    "uid": authData.user.email ?? "",
-                    "email": authData.user.email ?? "",
-                    "profileImageUrl": "",
-                    "status": "Welcome To TinderClone"
-                ]
-                Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict) { (error, ref) in
-                    if error == nil {
-                        print("finished")
-                    }
-                }
-            }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    @objc private func handleAddImage() {
+        print("123")
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    private func validateSignUpFields() {
+        guard let username = self.fullNameTextField.text, !username.isEmpty else {
+            ProgressHUD.showError("Please enter a username")
+            return
         }
+        guard let email = self.emailTextField.text, !email.isEmpty else {
+            ProgressHUD.showError("Please enter a valid email address")
+            return
+        }
+        guard let password = self.passwordTextField.text, !password.isEmpty else {
+            ProgressHUD.showError("password field cannot be blank")
+            return
+        }
+    }
+    
+    @objc private func handleTextChange(textField: UITextField) {
+        if textField == fullNameTextField {
+            print("fullname Changing")
+        } else if textField == emailTextField {
+            print("email changing")
+        } else {
+            print("password changing")
+        }
+        let isFormValid = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
+        
+        registrationButton.isEnabled = isFormValid
+        if isFormValid {
+            registrationButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        } else {
+            registrationButton.backgroundColor = .lightGray
+        }
+    }
+    
+    @objc private func signUpUser() {
+        self.view.endEditing(true)
+        self.validateSignUpFields()
+        self.signUp()
+
     }
     @objc private func cancelAction() {
         dismiss(animated: true, completion: nil)
