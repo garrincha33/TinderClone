@@ -20,48 +20,29 @@ struct UserApi {
             }
             if let authData = authDataResult {
                 print(authData.user.email ?? "")
-                var dict: Dictionary<String, Any> = [
-                    "uid": authData.user.uid,
-                    "email": authData.user.email ?? "",
-                    "username": withUsername,
-                    "profileImageUrl": "",
-                    "status": "Welcome To TinderClone"
+                let dict: Dictionary<String, Any> = [
+                    UID: authData.user.uid,
+                    EMAIL: authData.user.email ?? "",
+                    USERNAME: withUsername,
+                    PROFILE_IMAGE_URL: "",
+                    STATUS: "Welcome To TinderClone"
                 ]
-                
                 //MARK:-handle image
                 guard let imageSelected = image else {
-                    ProgressHUD.showError("please choose an image")
+                    ProgressHUD.showError(ERROR_EMPTY_PHOTO)
                     return
                 }
                 guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
                     return
                 }
-                
                 //MARK:-Firebase Storage
-                let storageRef = Storage.storage().reference(forURL: "gs://tinderclone-c6e72.appspot.com")
-                let storageProfileRef = storageRef.child("profile").child(authData.user.uid)
+                let storageProfileRef = Reference().storageSpecifcProfile(uid: authData.user.uid)
                 let metaData = StorageMetadata()
                 metaData.contentType = "image/jpg"
-                storageProfileRef.putData(imageData, metadata: metaData) { (storageMetaData, error) in
-                    if error != nil {
-                        print(error?.localizedDescription ?? "")
-                        return
-                    }
-                    storageProfileRef.downloadURL { (url, error) in
-                        if let metaDataImageUrl = url?.absoluteString {
-                            dict["profileImageUrl"] = metaDataImageUrl
-                            
-                            //MARK:-Firebase Database
-                            Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict) { (error, ref) in
-                                if error == nil {
-                                    print("finished")
-                                    onSuccess()
-                                } else {
-                                    onError(error!.localizedDescription)
-                                }
-                            }
-                        }
-                    }
+                StorageService.savePhoto(username: withUsername, uid: authData.user.uid, data: imageData, metadata: metaData, storageProfileRef: storageProfileRef, dict: dict) {
+                    onSuccess()
+                } onError: { (errorMessage) in
+                    onError(errorMessage)
                 }
             }
         }

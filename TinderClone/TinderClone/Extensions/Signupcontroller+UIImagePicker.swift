@@ -23,11 +23,13 @@ extension SignupController: UIImagePickerControllerDelegate, UINavigationControl
         dismiss(animated: true, completion: nil)
     }
     
-     func signUp() {
+     func signUp(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        ProgressHUD.show()
         Api.User.SignUp(withUsername: fullNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, image: imageForFirebase!) {
-            print("Finished")
+            ProgressHUD.dismiss()
+            onSuccess()
         } onError: { (errorMessage) in
-            print(errorMessage)
+            onError(errorMessage)
         }
     }
 }
