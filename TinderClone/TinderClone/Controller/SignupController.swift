@@ -116,7 +116,11 @@ class SignupController: UIViewController {
     @objc private func signUpUser() {
         self.view.endEditing(true)
         self.validateSignUpFields()
-        self.signUp()
+        self.signUp(onSuccess: {
+            //switch views here
+        }) { (error) in
+            ProgressHUD.showError(error)
+        }
 
     }
     @objc private func cancelAction() {
