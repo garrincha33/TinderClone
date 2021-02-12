@@ -62,6 +62,30 @@ class SignupController: UIViewController {
         button.addTarget(self, action: #selector(signUpUser), for: .touchUpInside)
         return button
     }()
+    
+    let signInLable: UILabel = {
+        let lable = UILabel()
+        lable.text = "Already have an account?"
+        lable.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        lable.textColor = .secondaryLabel
+        return lable
+    }()
+    
+    let signInButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign In Here", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .heavy)
+        button.backgroundColor = .darkGray
+        button.isEnabled = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(signInUser), for: .touchUpInside)
+        return button
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemTeal
@@ -80,21 +104,7 @@ class SignupController: UIViewController {
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
-    private func validateSignUpFields() {
-        guard let username = self.fullNameTextField.text, !username.isEmpty else {
-            ProgressHUD.showError("Please enter a username")
-            return
-        }
-        guard let email = self.emailTextField.text, !email.isEmpty else {
-            ProgressHUD.showError("Please enter a valid email address")
-            return
-        }
-        guard let password = self.passwordTextField.text, !password.isEmpty else {
-            ProgressHUD.showError("password field cannot be blank")
-            return
-        }
-    }
-    
+
     @objc private func handleTextChange(textField: UITextField) {
         if textField == fullNameTextField {
             print("fullname Changing")
@@ -115,7 +125,7 @@ class SignupController: UIViewController {
     
     @objc private func signUpUser() {
         self.view.endEditing(true)
-        self.validateSignUpFields()
+        //self.validateSignUpFields()
         self.signUp(onSuccess: {
             //switch views here
         }) { (error) in
@@ -123,6 +133,13 @@ class SignupController: UIViewController {
         }
 
     }
+    
+    @objc private func signInUser() {
+        self.view.endEditing(true)
+        let signInController = SignInController()
+        self.navigationController?.pushViewController(signInController, animated: true)
+        }
+    
     @objc private func cancelAction() {
         dismiss(animated: true, completion: nil)
     }
@@ -140,6 +157,13 @@ class SignupController: UIViewController {
         view.addSubview(stack)
         stack.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         stack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        let signInStack = UIStackView(arrangedSubviews: [signInLable, signInButton])
+        signInStack.alignment = .center
+        signInStack.axis = .horizontal
+        signInStack.spacing = 8
+        view.addSubview(signInStack)
+        signInStack.anchor(top: stack.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 20, left: 50, bottom: 0, right: 50))
     }
     private func setupGradientlayer() {
         let gradientLayer = CAGradientLayer()
