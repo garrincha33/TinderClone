@@ -10,6 +10,10 @@
 		130DFE465A13EEA370BA4697 /* Pods_TinderClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C04AB606F8E2F8FA1125AB /* Pods_TinderClone.framework */; };
 		1B65093325F773F90058318A /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65093225F773F90058318A /* MessagesController.swift */; };
 		1B65093625F7757A0058318A /* MeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65093525F7757A0058318A /* MeController.swift */; };
+		1B65093A25F7887D0058318A /* MeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65093925F7887D0058318A /* MeModel.swift */; };
+		1B65093D25F795790058318A /* MeTableViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65093C25F795790058318A /* MeTableViewCustomCell.swift */; };
+		1B65094025F7A0EB0058318A /* MeSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65093F25F7A0EB0058318A /* MeSections.swift */; };
+		1B65094325F7ABF60058318A /* MeTableControllerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65094225F7ABF60058318A /* MeTableControllerHeader.swift */; };
 		1B8F262625C0C32400FF0C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F262525C0C32400FF0C2E /* AppDelegate.swift */; };
 		1B8F262825C0C32400FF0C2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F262725C0C32400FF0C2E /* SceneDelegate.swift */; };
 		1B8F262F25C0C32500FF0C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B8F262E25C0C32500FF0C2E /* Assets.xcassets */; };
@@ -34,6 +38,10 @@
 /* Begin PBXFileReference section */
 		1B65093225F773F90058318A /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		1B65093525F7757A0058318A /* MeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeController.swift; sourceTree = "<group>"; };
+		1B65093925F7887D0058318A /* MeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeModel.swift; sourceTree = "<group>"; };
+		1B65093C25F795790058318A /* MeTableViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeTableViewCustomCell.swift; sourceTree = "<group>"; };
+		1B65093F25F7A0EB0058318A /* MeSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeSections.swift; sourceTree = "<group>"; };
+		1B65094225F7ABF60058318A /* MeTableControllerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeTableControllerHeader.swift; sourceTree = "<group>"; };
 		1B8F262225C0C32400FF0C2E /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B8F262525C0C32400FF0C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B8F262725C0C32400FF0C2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +122,8 @@
 		1B8F264125C0C77700FF0C2E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1B65093925F7887D0058318A /* MeModel.swift */,
+				1B65093F25F7A0EB0058318A /* MeSections.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				1B8F265425C0D30800FF0C2E /* CustomTextField.swift */,
+				1B65093C25F795790058318A /* MeTableViewCustomCell.swift */,
+				1B65094225F7ABF60058318A /* MeTableControllerHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,19 +328,23 @@
 			files = (
 				1B8F263F25C0C67E00FF0C2E /* MainController.swift in Sources */,
 				1B8F262625C0C32400FF0C2E /* AppDelegate.swift in Sources */,
+				1B65093D25F795790058318A /* MeTableViewCustomCell.swift in Sources */,
 				1B8F264B25C0C7D100FF0C2E /* UIstackView+Ext.swift in Sources */,
+				1B65094025F7A0EB0058318A /* MeSections.swift in Sources */,
 				1B8F279E25D6698100FF0C2E /* SignInController.swift in Sources */,
 				1B8F264F25C0C80800FF0C2E /* Errors.swift in Sources */,
 				1B8F265525C0D30800FF0C2E /* CustomTextField.swift in Sources */,
 				1B8F26DB25C37B5200FF0C2E /* Api.swift in Sources */,
 				1B8F262825C0C32400FF0C2E /* SceneDelegate.swift in Sources */,
 				1B8F278725D5843600FF0C2E /* StorageService.swift in Sources */,
+				1B65094325F7ABF60058318A /* MeTableControllerHeader.swift in Sources */,
 				1B65093625F7757A0058318A /* MeController.swift in Sources */,
 				1B8F265E25C16E5C00FF0C2E /* SignupController.swift in Sources */,
 				1B8F27A925D69C1A00FF0C2E /* MainTabBarController.swift in Sources */,
 				1B8F279B25D5B39200FF0C2E /* Reference.swift in Sources */,
 				1B65093325F773F90058318A /* MessagesController.swift in Sources */,
 				1B8F264A25C0C7D100FF0C2E /* UIView+Layout.swift in Sources */,
+				1B65093A25F7887D0058318A /* MeModel.swift in Sources */,
 				1B8F26DF25C37B6200FF0C2E /* UserApi.swift in Sources */,
 				1B8F264C25C0C7D100FF0C2E /* VerticalStackView.swift in Sources */,
 				1B8F26D725C2E50700FF0C2E /* Signupcontroller+UIImagePicker.swift in Sources */,
