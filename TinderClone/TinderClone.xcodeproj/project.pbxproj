@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		130DFE465A13EEA370BA4697 /* Pods_TinderClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C04AB606F8E2F8FA1125AB /* Pods_TinderClone.framework */; };
+		1B65093325F773F90058318A /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65093225F773F90058318A /* MessagesController.swift */; };
+		1B65093625F7757A0058318A /* MeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65093525F7757A0058318A /* MeController.swift */; };
 		1B8F262625C0C32400FF0C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F262525C0C32400FF0C2E /* AppDelegate.swift */; };
 		1B8F262825C0C32400FF0C2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F262725C0C32400FF0C2E /* SceneDelegate.swift */; };
 		1B8F262F25C0C32500FF0C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B8F262E25C0C32500FF0C2E /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B65093225F773F90058318A /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		1B65093525F7757A0058318A /* MeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeController.swift; sourceTree = "<group>"; };
 		1B8F262225C0C32400FF0C2E /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B8F262525C0C32400FF0C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B8F262725C0C32400FF0C2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 				1B8F265D25C16E5C00FF0C2E /* SignupController.swift */,
 				1B8F279D25D6698100FF0C2E /* SignInController.swift */,
 				1B8F27A825D69C1A00FF0C2E /* MainTabBarController.swift */,
+				1B65093225F773F90058318A /* MessagesController.swift */,
+				1B65093525F7757A0058318A /* MeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -317,9 +323,11 @@
 				1B8F26DB25C37B5200FF0C2E /* Api.swift in Sources */,
 				1B8F262825C0C32400FF0C2E /* SceneDelegate.swift in Sources */,
 				1B8F278725D5843600FF0C2E /* StorageService.swift in Sources */,
+				1B65093625F7757A0058318A /* MeController.swift in Sources */,
 				1B8F265E25C16E5C00FF0C2E /* SignupController.swift in Sources */,
 				1B8F27A925D69C1A00FF0C2E /* MainTabBarController.swift in Sources */,
 				1B8F279B25D5B39200FF0C2E /* Reference.swift in Sources */,
+				1B65093325F773F90058318A /* MessagesController.swift in Sources */,
 				1B8F264A25C0C7D100FF0C2E /* UIView+Layout.swift in Sources */,
 				1B8F26DF25C37B6200FF0C2E /* UserApi.swift in Sources */,
 				1B8F264C25C0C7D100FF0C2E /* VerticalStackView.swift in Sources */,

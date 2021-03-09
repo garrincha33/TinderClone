@@ -25,9 +25,9 @@ class MainTabBarController: UITabBarController {
     }
     private func setupTabBarControllers() {
         viewControllers = [
-            setupNavController(with: UIViewController(), title: "Messages", image: "icon_messages"),
+            setupNavController(with: MessagesController(), title: "Messages", image: "icon_messages"),
             setupNavController(with: UIViewController(), title: "Users", image: "icon_users"),
-            setupNavController(with: UIViewController(), title: "Me", image: "icon_profile")
+            setupNavController(with: MeController(), title: "Me", image: "icon_profile")
         ]
         tabBar.tintColor = .purple
         guard let items = tabBar.items else {return}
