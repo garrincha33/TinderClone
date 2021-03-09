@@ -48,11 +48,23 @@ class SignInController: UIViewController {
     }
     
     @objc private func signInUser() {
+        
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
         self.view.endEditing(true)
         ProgressHUD.show()
-        Api.User.signIn(email: emailTextField.text!, password: passwordTextField.text!) {
+        Api.User.signIn(email: email, password: password) {
             ProgressHUD.dismiss()
-            print("success")
+            
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            print("signedIn user")
+            
+            guard let mainTabBarController = window?.rootViewController as? MainTabBarController else { return }
+            
+            mainTabBarController.setupTabBarControllers()
+            self.dismiss(animated: true, completion: nil)
+            
+            
         } onError: { (errorMessage) in
             ProgressHUD.showError("password is incorrect or not valid")
         }

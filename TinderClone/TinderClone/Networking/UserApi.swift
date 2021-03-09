@@ -58,4 +58,13 @@ struct UserApi {
             }
         }
     }
+    
+    func LogOut(onSuccess: @escaping() -> Void) {
+        do {
+            try Auth.auth().signOut()
+            onSuccess()
+        } catch {
+            ProgressHUD.showError(error.localizedDescription)
+        }
+    }
 }

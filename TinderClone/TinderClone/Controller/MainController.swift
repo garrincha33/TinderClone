@@ -71,6 +71,7 @@ class MainController: UIViewController {
     @objc private func alreadyHaveAccount() {
         let signUpController = SignupController()
         let navController = UINavigationController(rootViewController: signUpController)
+        navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true, completion: nil)
     }
     private func setupUI() {

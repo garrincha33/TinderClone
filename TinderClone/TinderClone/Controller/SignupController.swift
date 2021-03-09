@@ -128,16 +128,26 @@ class SignupController: UIViewController {
         //self.validateSignUpFields()
         self.signUp(onSuccess: {
             //switch views here
+            //creating a reference to MainTabBarControllers resets the UI and
+            //allows new users to login
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            print("signedIn user")
+            guard let mainTabBarController = window?.rootViewController as? MainTabBarController else { return }
+            mainTabBarController.setupTabBarControllers()
+            let controller = MainTabBarController()
+            let navController = UINavigationController(rootViewController: controller)
+            navController.modalPresentationStyle = .fullScreen
+            self.present(navController, animated: true, completion: nil)
         }) { (error) in
             ProgressHUD.showError(error)
         }
-
     }
     
     @objc private func signInUser() {
+        print("test")
         self.view.endEditing(true)
         let signInController = SignInController()
-        self.navigationController?.pushViewController(signInController, animated: true)
+        self.present(signInController, animated: true, completion: nil)
         }
     
     @objc private func cancelAction() {

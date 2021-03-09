@@ -6,16 +6,27 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let LoginController = MainController()
+                let navController = UINavigationController(rootViewController: LoginController)
+                navController.modalPresentationStyle = .fullScreen
+                self.present(navController, animated: true, completion: nil)
+            }
+            
+            return
+        }
         view.backgroundColor = .white
         setupTabBarControllers()
     }
 
-    private func setupNavController(with rootViewController: UIViewController, title: String, image: String) -> UINavigationController {
+     private func setupNavController(with rootViewController: UIViewController, title: String, image: String) -> UINavigationController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.image = UIImage(named: image)
         navController.tabBarItem.title = title
@@ -23,7 +34,7 @@ class MainTabBarController: UITabBarController {
         rootViewController.navigationItem.title = title
         return navController
     }
-    private func setupTabBarControllers() {
+     func setupTabBarControllers() {
         viewControllers = [
             setupNavController(with: MessagesController(), title: "Messages", image: "icon_messages"),
             setupNavController(with: UIViewController(), title: "Users", image: "icon_users"),

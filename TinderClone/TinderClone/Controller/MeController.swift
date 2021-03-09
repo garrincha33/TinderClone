@@ -13,7 +13,6 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .yellow
         setupTableView()
         
@@ -30,7 +29,6 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
         //IMPLEMENT LATER GET USER INFO
         
     }
-    
     private func setupTableView() {
         title = "Me"
         view.addSubview(tableView)
@@ -55,37 +53,18 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         //NEW SECTION
         models.append(MeSections(title: "Apps", options: [
-            MeModel(title: "Welcome", icon: UIImage(systemName: "􀉼"), iconBackGroundColor: .systemBlue) {
-                
-            },
-            MeModel(title: "testong123@gmail.com", icon: UIImage(systemName: "􀎞"), iconBackGroundColor: .systemGreen) {
-                
-            },
-            MeModel(title: "Choose Wallpaper", icon: UIImage(systemName: "􀉥"), iconBackGroundColor: .systemTeal) {
-                
+            MeModel(title: "Log Out", icon: UIImage(systemName: "xmark.circle"), iconBackGroundColor: .systemRed) {
+                Api.User.LogOut {
+                    let loginController = SignInController()
+                    let navController = UINavigationController(rootViewController: loginController)
+                    navController.modalPresentationStyle = .fullScreen
+                    self.present(navController, animated: true, completion: nil)
+                }
             }
-            
         ]))
-        
-        
-        
         //NEW SECTION
-        models.append(MeSections(title: "Security", options: [
-            MeModel(title: "Welcome", icon: UIImage(systemName: "􀉼"), iconBackGroundColor: .systemBlue) {
-                
-            },
-            MeModel(title: "testong123@gmail.com", icon: UIImage(systemName: "􀎞"), iconBackGroundColor: .systemGreen) {
-                
-            },
-            MeModel(title: "Choose Wallpaper", icon: UIImage(systemName: "􀉥"), iconBackGroundColor: .systemTeal) {
-                
-            }
-            
-        ]))
-        
-        
+       
     }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = models[section]
         return section.title
@@ -106,13 +85,11 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.configure(with: model)
         return cell
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = models[indexPath.section].options[indexPath.row]
         model.handler()
     }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MeTableControllerHeader.identifier)
         return header
