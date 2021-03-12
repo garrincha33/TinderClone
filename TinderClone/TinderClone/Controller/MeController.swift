@@ -10,7 +10,7 @@ import UIKit
 class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var models = [MeSections]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
@@ -37,20 +37,21 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.frame = view.bounds
         configure()
     }
+    
     private func configure() {
+   
         models.append(MeSections(title: "General", options: [
             MeModel(title: "Welcome", icon: UIImage(systemName: "house"), iconBackGroundColor: .systemBlue) {
                 print("1st cell tapped")
             },
             MeModel(title: "testong123@gmail.com", icon: UIImage(systemName: "pencil"), iconBackGroundColor: .systemGreen) {
-                
+
             },
             MeModel(title: "Choose Wallpaper", icon: UIImage(systemName: "pencil.circle"), iconBackGroundColor: .systemTeal) {
-                
+
             }
-            
+
         ]))
-        
         //NEW SECTION
         models.append(MeSections(title: "Apps", options: [
             MeModel(title: "Log Out", icon: UIImage(systemName: "xmark.circle"), iconBackGroundColor: .systemRed) {
@@ -63,7 +64,6 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
             }
         ]))
         //NEW SECTION
-       
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = models[section]

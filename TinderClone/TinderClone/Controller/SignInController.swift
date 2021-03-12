@@ -47,6 +47,10 @@ class SignInController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar()
+    }
+    
     @objc private func signInUser() {
         
         guard let email = emailTextField.text else { return }

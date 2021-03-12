@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController {
      func setupTabBarControllers() {
         viewControllers = [
             setupNavController(with: MessagesController(), title: "Messages", image: "icon_messages"),
-            setupNavController(with: UIViewController(), title: "Users", image: "icon_users"),
+            setupNavController(with: PeopleController(), title: "Users", image: "icon_users"),
             setupNavController(with: MeController(), title: "Me", image: "icon_profile")
         ]
         tabBar.tintColor = .purple
