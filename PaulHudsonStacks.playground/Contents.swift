@@ -79,6 +79,11 @@ var numbers = Stack<Int>()
 var numberArray: Stack = [1,2,3,4,5] //this isnt actually an array, but looks like one using above extension
 print(numberArray)
 
+struct JustAnotherStack<Element> {
+    private var array = [Element]()
+    
+    var count: Int {array.count}
+}
 
 
 //create a stack

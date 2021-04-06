@@ -45,7 +45,6 @@ class PeopleTableControllerCustomCell: UITableViewCell {
         return lable
     }()
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -67,5 +66,11 @@ class PeopleTableControllerCustomCell: UITableViewCell {
                 //hStack.padLeft(10)
                 addSubview(hStack)
                 hStack.fillSuperview()
+    }
+    
+     func loadUser(_ user: User) {
+        self.usernameLable.text = user.username
+        self.statusLable.text = user.status
+        self.avatar.image = UIImage(named: "taylor_swift")
     }
 }
