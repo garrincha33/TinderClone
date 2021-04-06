@@ -41,7 +41,7 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
     private func configure() {
    
         models.append(MeSections(title: "General", options: [
-            MeModel(title: "Welcome", icon: UIImage(systemName: "house"), iconBackGroundColor: .systemBlue) {
+            MeModel(title: "Welcome, Username", icon: UIImage(systemName: "house"), iconBackGroundColor: .systemBlue) {
                 print("1st cell tapped")
             },
             MeModel(title: "testong123@gmail.com", icon: UIImage(systemName: "pencil"), iconBackGroundColor: .systemGreen) {
@@ -53,7 +53,7 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         ]))
         //NEW SECTION
-        models.append(MeSections(title: "Apps", options: [
+        models.append(MeSections(title: "Account", options: [
             MeModel(title: "Log Out", icon: UIImage(systemName: "xmark.circle"), iconBackGroundColor: .systemRed) {
                 Api.User.LogOut {
                     let loginController = SignInController()
@@ -95,7 +95,7 @@ class MeController: UIViewController, UITableViewDelegate, UITableViewDataSource
         return header
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 100 : 0
+        return section == 0 ? 100 : 10
     }
 
 }

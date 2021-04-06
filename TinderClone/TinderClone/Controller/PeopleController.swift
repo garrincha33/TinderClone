@@ -9,22 +9,24 @@ import UIKit
 
 class PeopleController: UITableViewController {
     
+    var users: [User] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(PeopleTableControllerCustomCell.self, forCellReuseIdentifier: "cell")
-
+        LoadUsers()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell" , for: indexPath) as? PeopleTableControllerCustomCell  else {
             return UITableViewCell()
         }
-        
+        let user = users[indexPath.row]
+        cell.loadUser(user)
         return cell
     }
     
@@ -32,4 +34,13 @@ class PeopleController: UITableViewController {
         return 100
     }
     
+    private func LoadUsers() {
+        Reference().databaseUsers.observe(.childAdded) { (snapshot) in
+            if let dict = snapshot.value as? Dictionary<String, Any> {
+                guard let user = User.transformUser(dict: dict) else {return}
+                self.users.append(user)
+            }
+            self.tableView.reloadData()
+        }
+    }
 }
