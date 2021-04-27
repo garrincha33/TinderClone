@@ -31,9 +31,6 @@ class StorageService {
                             }
                         }
                     }
-                    
-                    
-                    
                     var dictTemp = dict
                     dictTemp[PROFILE_IMAGE_URL] = metaDataImageUrl
                     

@@ -9,4 +9,6 @@ import Foundation
 
 struct Api {
     static var User = UserApi()
+    //step 2 create a reference to the cache
+    static var ImageCache = Cache()
 }
